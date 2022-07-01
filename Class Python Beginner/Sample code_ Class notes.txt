@@ -1,0 +1,67 @@
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+age = input("what is your age? ")
+print("Hello"   +age)
+birth_year =input("Enter your birth year:")
+print("You are", 2022 - int(birth_year))
+
+first = input("First: ")
+second = input("Second: ")
+sum1 = int(first) + int(second)
+print(sum1)
+
+third = input("Third: ")
+fourth = input("Fourth: ")
+sum2 = float(third) + float(fourth)
+print(sum2)
+
+fifth = float(input("fifth: "))
+sixth = float(input("sixth: "))
+sum3 = fifth + sixth
+print(sum3)
+
+course = 'Python for Beginners'
+print(course.upper())
+print(course.lower())
+print(course)
+print(course.replace('for', 'lambda'))
+
+////////////////////////////////////////////////////////////////
+
+
+
+Smerty = input("Yo Momma: ")
+devushka= input("Black: ")
+sougaku = float(Smerty) + float(devushka)
+print(sougaku)
+
+
+chewbacca = input("Yo Momma: ")
+hansolo = input("Black: ")
+sougaku = float(chewbacca) + float(hansolo)
+print(sougaku)
+
+
+////////////////////////////////////////////////////////////////
+
+
+course = 'Python for Beginners'
+print(course.upper())
+print(course.lower())
+print(course)
+print(course.capitalize())
+print(course.replace('for', 'lambda'))
