@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIA7RZ6C6ARWVFR7HPF"
-  secret_key = "Q03G35/ZhpyvTR0AmhLhn+AxeGcQ-tXm7o6pvWf7"
+  access_key = ""
+  secret_key = ""
 }
 
 // User data file inside of S3 bucket
