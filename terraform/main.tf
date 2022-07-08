@@ -1,50 +1,187 @@
 provider "aws" {
-  region     = "us-east-1"
+  region     = "us-east-2"
   access_key = ""
   secret_key = ""
 }
-
-// User data file inside of S3 bucket
-data "aws_s3_bucket_object" "bootstrap_script" {
-  bucket = "state_file/blue-state"
-  key    = "key_name"
-}
-
-// EC2 instance creation while calling user data file
-resource "aws_instance" "Demo" {
-  ami           = "ABC"
-  instance_type = "t3a.medium"
-  user_data     = data.aws_s3_bucket_object.bootstrap_script.body
-
-  variable "ec2_sg" {}
-  data "aws_security_group" "selected" {
-  id = var.ec2_sg
-}
+resource "aws_instance" "forMyPortfolio" {
+  ami           = "ami-0aeb7c931a5a61206"
+  instance_type = "t2.micro"
 
   tags = {
-    Name = "Demo"
+    Name = "forMyPortfolio"
+  }
+}
+resource "aws_vpc" "Mauvais_VPC" {
+  cidr_block       = "10.1.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "Mauvais_VPC"
+    Environment = "Test"
+  }
+  }
+  resource "aws_subnet" "public_subnet-1" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.1.0/24"
+  
+  tags = {
+    Name = "public_subnet-1"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"    
+    Environment = "Test"
+  }
+}
+  resource "aws_subnet" "public_subnet-2" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.2.0/24"
+  
+  tags = {
+    Name = "public_subnet-2"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"    
+    Environment = "Test"
+  }
+}
+  resource "aws_subnet" "public_subnet-3" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.3.0/24"
+  
+  tags = {
+    Name = "public_subnet-3"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"  
+    Environment = "Test"  
+  }
+}
+  resource "aws_subnet" "private_subnet-1" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.4.0/24"
+  
+  tags = {
+    Name = "private_subnet-1"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"    
+    Environment = "Test"
+  }
+}
+  resource "aws_subnet" "private_subnet-2" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.5.0/24"
+  
+  tags = {
+    Name = "private_subnet-2"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"    
+    Environment = "Test"
+  }
+}
+  resource "aws_subnet" "private_subnet-3" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.6.0/24"
+  
+  tags = {
+    Name = "private_subnet-3"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"    
+    Environment = "Test"
+  }
+}
+  resource "aws_subnet" "private_subnet-4" {
+  vpc_id     = aws_vpc.Mauvais_VPC.id
+  cidr_block = "10.1.7.0/24"
+  
+  tags = {
+    Name = "private_subnet-4"
+    Owner = "Joe Mauvais"
+    Layer = "Database Layer"    
+    Environment = "Test"
   }
 }
 
-// Defining variabole for tagert group assumed to be already created
-variable "lb_tg_arn" {
-  type    = string
-  default = ""
-}
 
-variable "aws-tg" {
-  type    = string
-  default = ""
-}
+resource "aws_vpc" "Bon_VPC" {
+  cidr_block       = "10.2.0.0/16"
+  instance_tenancy = "default"
 
-data "aws_lb_target_group" "test" {
-  arn  = var.lb_tg_arn
-  name = var.aws-tg
+  tags = {
+    Name = "Bon_VPC"
+    Environment = "Production"
+  }
+  }
+  resource "aws_subnet" "public_subnet1" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.1.0/24"
+  
+  tags = {
+    Name = "public_subnet1"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"    
+    Environment = "Production"
+  }
 }
-
-// Target group attachment
-resource "aws_lb_target_group_attachment" "test" {
-  target_group_arn = var.lb_tg_arn
-  target_id        = aws_instance.Demo.id
-  port             = 8443
+  resource "aws_subnet" "public_subnet2" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.2.0/24"
+  
+  tags = {
+    Name = "public_subnet2"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"    
+    Environment = "Production"
+  }
+}
+  resource "aws_subnet" "public_subnet3" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.3.0/24"
+  
+  tags = {
+    Name = "public_subnet3"
+    Owner = "Joe Mauvais"
+    Layer = "Web Layer"    
+    Environment = "Production"
+  }
+}
+  resource "aws_subnet" "private_subnet1" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.4.0/24"
+  
+  tags = {
+    Name = "private_subnet1"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"   
+    Environment = "Production" 
+  }
+}
+  resource "aws_subnet" "private_subnet2" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.5.0/24"
+  
+  tags = {
+    Name = "private_subnet2"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"    
+    Environment = "Production"
+  }
+}
+  resource "aws_subnet" "private_subnet3" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.6.0/24"
+  
+  tags = {
+    Name = "private_subnet3"
+    Owner = "Joe Mauvais"
+    Layer = "Application Layer"    
+    Environment = "Production"
+  }
+}
+  resource "aws_subnet" "private_subnet4" {
+  vpc_id     = aws_vpc.Bon_VPC.id
+  cidr_block = "10.2.7.0/24"
+  
+  tags = {
+    Name = "private_subnet4"
+    Owner = "Joe Mauvais"
+    Layer = "Database Layer"    
+    Environment = "Production"
+  }
 }
