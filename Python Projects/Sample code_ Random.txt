@@ -44,13 +44,13 @@ print(course.replace('for', 'lambda'))
 
 
 
-Smerty = input("Yo Momma: ")
+Smerty = input("Nanny: ")
 devushka= input("Black: ")
 sougaku = float(Smerty) + float(devushka)
 print(sougaku)
 
 
-chewbacca = input("Yo Momma: ")
+chewbacca = input("Yannis: ")
 hansolo = input("Black: ")
 sougaku = float(chewbacca) + float(hansolo)
 print(sougaku)
